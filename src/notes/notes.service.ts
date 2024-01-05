@@ -6,17 +6,15 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class NotesService {
     constructor(private prisma: PrismaService) {}
 
-    getNotes(): Promise<Note[]> {
-        return this.prisma.note.findMany();
+    getNotes(email: string): Promise<Note[]> {
+        return this.prisma.note.findMany({
+            where: { email: { equals: email } }
+        });
     }
 
     getNoteByTag(tag: string): Promise<Note[]> {
         return this.prisma.note.findMany({
-            where: {
-                tags: {
-                    has: tag
-                }
-            }
+            where: { tags: { has: tag } }
         });
     }
 

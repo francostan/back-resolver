@@ -12,5 +12,6 @@ model Note {
   id    Int    @id @default(autoincrement())
   title  String
   description  String?
-  tags  String
+  tags  String[]
+  email  String
 }
